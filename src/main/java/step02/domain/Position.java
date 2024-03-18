@@ -11,7 +11,16 @@ public class Position {
 		this.position = position;
 	}
 
+	public Position(String position) {
+		this(validate(position));
+	}
+
 	public int getPosition() {
 		return position;
+	}
+
+	private static int validate(String input) {
+		input = input.replaceAll("[^0-9]", "");
+		return Integer.parseInt(input);
 	}
 }
