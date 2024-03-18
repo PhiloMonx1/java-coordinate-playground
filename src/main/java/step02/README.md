@@ -31,3 +31,12 @@
 - assertj는 `assertThat(line.length()).isEqualTo(1.414, offset(0.00099));`과 같이 offset 메소드로 정밀도를 지정할 수 있다.
 
 ---
+## 구현
+- Position(위치) 클래스가 있다.
+- Position 클래스는 int position을 가진다.
+- Point(점) 클래스가 있다.
+- Point 클래스는 Position x, y를 가진다. 
+- Line(선) 클래스가 있다.
+- Line 클래스는 Point start, end를 가진다.
+- Line 클래스는 length() 메서드를 가진다. 
+- length()는 `제곱근((start.x.position - end.x.position)^제곱 + (start.y.position - end.y.position)^제곱)`을 double 타입으로 반환한다.
