@@ -14,11 +14,6 @@ public class Square extends Geometry {
 		this.pointNW = pointNW;
 	}
 
-	public Square(String input) {
-		this(new Point(input.split("-")[0]), new Point(input.split("-")[1]),
-				new Point(input.split("-")[2]), new Point(input.split("-")[3]));
-	}
-
 	public double area() {
 		double width = super.length(pointSW, pointSE);
 		double height = super.length(pointSE, pointNE);
