@@ -1,6 +1,6 @@
 package step03.domain;
 
-public class Line {
+public class Line extends Geometry {
 
 	private final Point start;
 	private final Point end;
@@ -10,12 +10,7 @@ public class Line {
 		this.end = end;
 	}
 
-	public Line(String line) {
-		this(new Point(line.split("-")[0]), new Point(line.split("-")[1]));
-	}
-
 	public double length() {
-		return Math.sqrt(Math.pow((start.getXposition() - end.getXposition()), 2) + Math.pow(
-				(start.getYposition() - end.getYposition()), 2));
+		return super.length(start, end);
 	}
 }
