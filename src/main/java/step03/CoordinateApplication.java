@@ -1,8 +1,9 @@
-package step03.domain;
+package step03;
 
 import java.util.Scanner;
+import step03.domain.Line;
 
-public class Application {
+public class CoordinateApplication {
 
 	private static final String ASK_COORDINATE = "좌표를 입력하세요.";
 	private static final String REPORT_RESULT = "두 점 사이 거리는 ";
