@@ -1,14 +1,22 @@
 package step03.domain;
 
-public class Square {
-	private final Line width;
-	private final Line height;
+public class Square extends Geometry {
+
+	private final Point pointSW;
+	private final Point pointSE;
+	private final Point pointNE;
+	private final Point pointNW;
+
 	public Square(Point pointSW, Point pointSE, Point pointNE, Point pointNW) {
-		this.width = new Line(pointSW, pointSE);
-		this.height = new Line(pointSE, pointNE);
+		this.pointSW = pointSW;
+		this.pointSE = pointSE;
+		this.pointNE = pointNE;
+		this.pointNW = pointNW;
 	}
 
 	public double area() {
-		return width.length() * height.length();
+		double width = super.length(pointSW, pointSE);
+		double height = super.length(pointSE, pointNE);
+		return width * height;
 	}
 }
