@@ -8,6 +8,10 @@ public abstract class Geometry {
 		if (splitInput.length == 2) {
 			return new Line(new Point(splitInput[0]), new Point(splitInput[1]));
 		}
+		if (splitInput.length == 3) {
+			return new Triangle(new Point(splitInput[0]), new Point(splitInput[1]),
+					new Point(splitInput[2]));
+		}
 		if (splitInput.length == 4) {
 			return new Square(new Point(splitInput[0]), new Point(splitInput[1]),
 					new Point(splitInput[2]), new Point(splitInput[3]));
