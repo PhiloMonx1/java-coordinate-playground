@@ -34,23 +34,11 @@ public class Square extends Geometry {
 		int maxX = points.stream().mapToInt(Point::getXposition).max().getAsInt();
 		int maxY = points.stream().mapToInt(Point::getYposition).max().getAsInt();
 
-		Point[] organizedPoints = new Point[4];
+		Point pointSW = new Point(new Position(minX), new Position(minY));
+		Point pointSE = new Point(new Position(maxX), new Position(minY));
+		Point pointNE = new Point(new Position(maxX), new Position(maxY));
+		Point pointNW = new Point(new Position(minX), new Position(maxY));
 
-		for (Point point : points) {
-			if (point.getXposition() == minX && point.getYposition() == minY) {
-				organizedPoints[0] = point;
-			}
-			if (point.getXposition() == maxX && point.getYposition() == minY) {
-				organizedPoints[1] = point;
-			}
-			if (point.getXposition() == maxX && point.getYposition() == maxY) {
-				organizedPoints[2] = point;
-			}
-			if (point.getXposition() == minX && point.getYposition() == maxY) {
-				organizedPoints[3] = point;
-			}
-		}
-
-		return Arrays.asList(organizedPoints);
+		return Arrays.asList(pointSW, pointSE, pointNE, pointNW);
 	}
 }
