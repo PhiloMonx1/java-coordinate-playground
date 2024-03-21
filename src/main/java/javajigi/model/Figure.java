@@ -11,3 +11,7 @@ public interface Figure {
 
     String getAreaInfo();
 }
+/*
+  _05 _Next : AbstractFigure
+  Figure 인터페이스이다.
+ */
