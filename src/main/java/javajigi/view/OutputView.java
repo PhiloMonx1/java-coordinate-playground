@@ -66,3 +66,11 @@ public class OutputView {
         System.out.println(figure.getAreaInfo());
     }
 }
+/*
+  _12 _End
+  아웃풋 view를 담당하고 있으며 showCoordinatePlane()와 showArea() 메서드를 제외하고는 전부 private이다.
+  public 메서드는 CoordinateCalculator의 run()에서 사용하고 있는데,
+  왜 showArea()를 showCoordinatePlane() 내부에 통합시키지 않았는지는 잘 모르겠다.
+  메서드의 단일 책임을 위한 것일까?
+  그렇다면 showCoordinatePlane()와 showArea()를 통합하는 또 다른 메서드를 만드는 것은 어떨까?
+ */

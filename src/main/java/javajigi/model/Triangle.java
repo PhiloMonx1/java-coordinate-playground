@@ -13,12 +13,12 @@ public class Triangle extends AbstractFigure {
         }
     }
 
-    private boolean isInStraightLine(List<Point> points) {
+    private boolean isInStraightLine(List<Point> points) { //*1
         return points.get(0).calculateSlope(points.get(1)) == points.get(0).calculateSlope(points.get(2));
     }
 
     @Override
-    public double area() {
+    public double area() { //*1
         Point firstPoint = getPoints().get(0);
         Point secondPoint = getPoints().get(1);
         Point thirdPoint = getPoints().get(2);
@@ -41,3 +41,9 @@ public class Triangle extends AbstractFigure {
         return OUTPUT_AREA_OF_TRIANGLE + area();
     }
 }
+/*
+  _10 _Next : Point
+  *1. 요구사항의 도형들은 요구사항을 충족하기 공통적으로 선의 길이를 가지고 있어야 했다.
+      여기서는 선의 길이를 구하는 로직을 Line이 아닌 Point에서 구현했다.
+      A Point를 기점으로 B 포인트까지의 거리를 계산하면 선의 길이가 되기 때문이다.
+ */
