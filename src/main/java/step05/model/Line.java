@@ -24,7 +24,7 @@ public class Line extends Figure {
 	}
 
 	@Override
-	String areaInfo() {
+	public String areaInfo() {
 		return OUTPUT_AREA_MESSAGE + area();
 	}
 }

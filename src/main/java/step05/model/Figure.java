@@ -22,5 +22,5 @@ public abstract class Figure {
 
 	abstract double area();
 
-	abstract String areaInfo();
+	public abstract String areaInfo();
 }
