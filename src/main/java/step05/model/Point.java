@@ -7,7 +7,11 @@ public class Point {
 	private final Coordinate x;
 	private final Coordinate y;
 
-	public Point(Coordinate x, Coordinate y) {
+	public Point(int x, int y) {
+		this(new Coordinate(x), new Coordinate(y));
+	}
+
+	private Point(Coordinate x, Coordinate y) {
 		this.x = x;
 		this.y = y;
 	}
