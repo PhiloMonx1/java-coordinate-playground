@@ -16,11 +16,11 @@ public class Point {
 		this.y = y;
 	}
 
-	private int getX() {
+	int getX() {
 		return x.getPosition();
 	}
 
-	private int getY() {
+	int getY() {
 		return y.getPosition();
 	}
 
