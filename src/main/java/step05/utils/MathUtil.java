@@ -1,6 +1,11 @@
 package step05.utils;
 
 public class MathUtil {
+
+	private MathUtil() {
+		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+	}
+
 	public static double squareDifference(int firstValue, int secondValue) {
 		return Math.pow(firstValue - secondValue, 2);
 	}
