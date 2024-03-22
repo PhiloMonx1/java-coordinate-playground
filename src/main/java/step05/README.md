@@ -147,3 +147,10 @@ public class FigureFactory {
 > 특히 좋았던 부분은 `isInvalidNumberOf()`의 개선인데 `FigureType`의 static 함수를 통해 개선하여서 새로운 도형이 생겨도 수정할 필요가 없어졌다. <br>
 > 결과적으로 새로운 도형이 생길 경우 `FigureFactory`에서는 `classifier`만 추가해주면 되는 것이다. (물론 클래스 추가 후 `FigureType` 속성을 추가해야 하지만...) <br>
 > 솔직히 극적으로 개선된 것인지는 잘 모르겠다. 하지만 나는 작업자 입장에서 내가 개선한 코드가 클래스 추가를 할 때 더 직관적으로 다가올 것 같다.
+ 
+6. view 구현
+> 이번 챕터의 목적은 달성했지만 view, controller 부분을 분리하는게 약해서 `InputView`를 구현해보고자 한다. <br> 
+> `OutputView`의 경우 `showCoordinatePlane()`와 `showArea()`를 통합한 `showCoordinate()`를 작성한 것 외에 피드백 코드와 크게 차이점이 없다. <br>
+> 내가 피드백 코드의 `InputView`에 의문을 가졌던 부분은 `InputView`가 `Figure` 객체의 생성자를 리턴한다는 점이었다. <br>
+> 나는 그래서 `Scanner`로 사용자 input을 받고 정규식을 통해 x,y 값을 뽑아낸 후 이를 List<int[]>로 담아 리턴하는 부분까지를 `InputView`의 역할로 구현할 것이다. <br>
+> 받아낸 int x,y 값의 List를 통해 List<Point> 를 생성하고, 이를 `FigureFactory::crate()`에 전달하는 중간 객체가 필요하다.
