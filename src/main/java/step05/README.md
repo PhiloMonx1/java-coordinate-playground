@@ -23,3 +23,10 @@
 > 우선 피드백 코드를 본 후에 확장된 시야를 토대로 재구현을 하기로 했다.<br>
 > 그게 아니라면 계속해서 피드백 코드를 보게 될 것이고, 그냥 따라 적는 것과 크게 다르지 않을 것이라 생각했기 때문이다.<br>
 > 우선적으로 Point 클래스를 구현할 것인데,피드백 강의에서 구현한 모든 것을 구현하지 않고, 요구사항을 충족하는 데 집중할 것이다.
+
+2. Figure 추상 클래스 구현
+> Figure 인터페이스 없이 `AbstractFigure` 추상 클래스만으로도 구현을 할 수 있지 않을까?<br>
+> 피드백 코드에선 `InputView::checkAccuracyOfPoints` 에서 정규식을 통해 Point 배열의 최대 값을 검증하고 있다.<br>
+> 그러나 만약 오각형, 육각형이 생겨나게 되면 해당 코드가 바뀌어야 한다. 그렇기에 나는 `FigureFactory` 클래스에 선언된 <br>
+> `NUM_OF_VERTICES_OF_` 상수를 활용해서, 상수 중 가장 큰 값을 `InputView::checkAccuracyOfPoints` 에서 가지는 방법을 고민하고자 한다. <br>
+> 또한 `FigureFactory`의 `NUM_OF_VERTICES_OF_` 상수 또한 각 도형 클래스에서 가져와서 선언하는 것을 변경하고자 한다.
