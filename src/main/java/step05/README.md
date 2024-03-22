@@ -154,3 +154,10 @@ public class FigureFactory {
 > 내가 피드백 코드의 `InputView`에 의문을 가졌던 부분은 `InputView`가 `Figure` 객체의 생성자를 리턴한다는 점이었다. <br>
 > 나는 그래서 `Scanner`로 사용자 input을 받고 정규식을 통해 x,y 값을 뽑아낸 후 이를 List<int[]>로 담아 리턴하는 부분까지를 `InputView`의 역할로 구현할 것이다. <br>
 > 받아낸 int x,y 값의 List를 통해 List<Point> 를 생성하고, 이를 `FigureFactory::crate()`에 전달하는 중간 객체가 필요하다.
+
+> `InputView`를 구현하던 중 이슈를 발견했다. 나는 `FigureType`를 통해서 `Figure`의 하위 클래스의 꼭지점을 관리하고 있다 <br>
+> 그런데 현재 방식은 문제가 있다. 선, 삼각형, 사각형은 점의 갯수가 1개씩 차이가 나기 때문에 현재 코드는 문제가 없다. <br> 
+> 다음 구현 클래스가 오각형이라는 보장은 없다. 오각형을 건너뛰고 육각형이나 팔각형을 구현할 때도 지금의 예외처리가 통할까? <br>
+> 그렇기에 한 번의 체크를 더 해야 한다. 처음에는 `FigureType`에 검증 메서드를 추가하려 했으나, <br>
+> 어차피 `FigureFactory`에서 생성자를 호출할 때 NullPointException 이 발생하기 때문에 여기서 처리하기로 했다 <br>
+> 그러나 이 경우 나는 `InputView`와 `FigureFactory`의 관계를 끊었기에 `FigureFactory`에서 발생한 예외가 다시 `InputView::inputCoordinates()`를 리턴하도록 하는 방법을 찾아야 한다.

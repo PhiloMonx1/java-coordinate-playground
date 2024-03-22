@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 public class FigureFactory {
 	private static final String ERROR_INVALID_FIGURE_CREATION = "입력된 Point 개수가 유효하지 않습니다.";
+	private static final String ERROR_NOT_APPLY_CLASSIFIER = "지원하지 않는 도형입니다.";
 	private static final Map<Integer, Function<List<Point>, Figure>> classifier = new HashMap<>();
 
 	static {
@@ -32,6 +33,10 @@ public class FigureFactory {
 	}
 
 	private static Figure classifyFigure(List<Point> points) {
-		return classifier.get(points.size()).apply(points);
+		try {
+			return classifier.get(points.size()).apply(points);
+		} catch (Exception e) {
+			throw new IllegalArgumentException(ERROR_NOT_APPLY_CLASSIFIER);
+		}
 	}
 }
