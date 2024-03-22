@@ -23,4 +23,9 @@ public abstract class Figure {
 	abstract double area();
 
 	public abstract String areaInfo();
+
+	public boolean hasPoint(int x, int y) {
+		return getPoints().stream()
+				.anyMatch(point -> point.isSame(x, y));
+	}
 }

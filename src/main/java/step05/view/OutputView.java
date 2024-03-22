@@ -1,7 +1,7 @@
 package step05.view;
 
-import javajigi.model.Figure;
-import javajigi.model.Point;
+import step05.model.Coordinate;
+import step05.model.Figure;
 
 public class OutputView {
 
@@ -11,9 +11,10 @@ public class OutputView {
 	private static final String HORIZONTAL_AXIS = "----";
 	private static final String MARK_OF_POINT = "●";
 
-	private OutputView(){
+	private OutputView() {
 		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
 	}
+
 	public static void showCoordinate(Figure figure) {
 		showCoordinatePlane(figure);
 		showArea(figure);
@@ -26,7 +27,7 @@ public class OutputView {
 	}
 
 	private static void showVerticalNumbersWith(Figure figure) {
-		for (int y = Point.UPPER_LIMIT; y >= Point.LOWER_LIMIT; y--) {
+		for (int y = Coordinate.UPPER_LIMIT; y >= Coordinate.LOWER_LIMIT; y--) {
 			showAxisNumber(y);
 			System.out.print(VERTICAL_AXIS);
 			showPoints(figure, y);
@@ -43,7 +44,7 @@ public class OutputView {
 	}
 
 	private static void showPoints(Figure figure, int y) {
-		for (int x = Point.LOWER_LIMIT; x <= Point.UPPER_LIMIT; x++) {
+		for (int x = Coordinate.LOWER_LIMIT; x <= Coordinate.UPPER_LIMIT; x++) {
 			if (figure.hasPoint(x, y)) {
 				System.out.printf("%4s", MARK_OF_POINT);
 				continue;
@@ -54,14 +55,14 @@ public class OutputView {
 
 	private static void showHorizontalAxis() {
 		System.out.print(FOUR_BLANK + ORIGIN);
-		for (int x = Point.LOWER_LIMIT; x <= Point.UPPER_LIMIT; x++) {
+		for (int x = Coordinate.LOWER_LIMIT; x <= Coordinate.UPPER_LIMIT; x++) {
 			System.out.print(HORIZONTAL_AXIS);
 		}
 		emptyLine();
 	}
 
 	private static void showHorizontalNumbers() {
-		for (int x = 0; x <= Point.UPPER_LIMIT; x++) {
+		for (int x = 0; x <= Coordinate.UPPER_LIMIT; x++) {
 			showAxisNumber(x);
 		}
 		emptyLine();
@@ -72,6 +73,6 @@ public class OutputView {
 	}
 
 	private static void showArea(Figure figure) {
-		System.out.println(figure.getAreaInfo());
+		System.out.println(figure.areaInfo());
 	}
 }

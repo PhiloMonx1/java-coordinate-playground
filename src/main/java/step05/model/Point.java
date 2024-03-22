@@ -35,4 +35,8 @@ public class Point {
 		return Math.sqrt(MathUtil.squareDifference(getX(), point.getX())
 				+ MathUtil.squareDifference(getY(), point.getY()));
 	}
+
+	public boolean isSame(int x, int y) {
+		return getX() == x && getY() == y;
+	}
 }
