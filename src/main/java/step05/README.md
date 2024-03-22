@@ -119,3 +119,31 @@ public class Line extends Figure {
 
 > 한 번 구현을 했던 문제지만 예외 처리를 해야 했기에 막막했다. 그러나 이번 챕터의 목표는 기하학적 계산 능력이 아니고, 상속을 통한 객체지향설계이다. <br>
 > 그렇기에 부담감을 내려놓고, 학습 목표에 집중하기로 했다. 내가 집중해야 할 것은 각 클래스의 역할, 의존도, 결합도, 접근 제한 등이다.
+
+5. FigureFactory 구현
+> `FigureType`을 통한 구현이 빛을 발하는 부분이다.
+```java
+public class FigureFactory {
+    private static final Map<Integer, Function<List<Point>, Figure>> classifier = new HashMap<>();
+  
+    static {
+      classifier.put(FigureType.LINE.getVertices(), Line::new);
+      classifier.put(FigureType.TRIANGLE.getVertices(), Triangle::new);
+      classifier.put(FigureType.RECTANGLE.getVertices(), Rectangle::new);
+    }
+  
+    //...(생략)
+  
+    private static boolean isInvalidNumberOf(List<Point> points) {
+      int numOfPoints = points.size();
+      return numOfPoints < FigureType.getMinVertices() || numOfPoints > FigureType.getMaxVertices();
+    }
+  
+    //...(생략)
+}
+
+```
+> `FigureFactory`에 새로운 상수를 계속 추가하는 대신 `FigureType` 에서 클래스명을 사용한 속성으로 접근하도록 한 것이 더 가독성 있다고 생각했다. <br>
+> 특히 좋았던 부분은 `isInvalidNumberOf()`의 개선인데 `FigureType`의 static 함수를 통해 개선하여서 새로운 도형이 생겨도 수정할 필요가 없어졌다. <br>
+> 결과적으로 새로운 도형이 생길 경우 `FigureFactory`에서는 `classifier`만 추가해주면 되는 것이다. (물론 클래스 추가 후 `FigureType` 속성을 추가해야 하지만...) <br>
+> 솔직히 극적으로 개선된 것인지는 잘 모르겠다. 하지만 나는 작업자 입장에서 내가 개선한 코드가 클래스 추가를 할 때 더 직관적으로 다가올 것 같다.

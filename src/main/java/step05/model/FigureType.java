@@ -15,10 +15,16 @@ public enum FigureType {
 		this.vertices = vertices;
 	}
 
-	private int getVertices() {
+	public int getVertices() {
 		return vertices;
 	}
 
+	public static int getMinVertices() {
+		return Arrays.stream(FigureType.values())
+				.mapToInt(FigureType::getVertices)
+				.min()
+				.orElse(0);
+	}
 	public static int getMaxVertices() {
 		return Arrays.stream(FigureType.values())
 				.mapToInt(FigureType::getVertices)
