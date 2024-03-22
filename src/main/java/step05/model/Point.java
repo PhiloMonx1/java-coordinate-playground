@@ -24,6 +24,13 @@ public class Point {
 		return y.getPosition();
 	}
 
+	public double calculateSlope(Point point) {
+		if (getX() == point.getX()) {
+			return Double.MAX_VALUE;
+		}
+		return Math.abs((double) (getY() - point.getY()) / (getX() - point.getX()));
+	}
+
 	public double calculateDistance(Point point) {
 		return Math.sqrt(MathUtil.squareDifference(getX(), point.getX())
 				+ MathUtil.squareDifference(getY(), point.getY()));
