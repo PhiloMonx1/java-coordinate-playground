@@ -30,3 +30,87 @@
 > 그러나 만약 오각형, 육각형이 생겨나게 되면 해당 코드가 바뀌어야 한다. 그렇기에 나는 `FigureFactory` 클래스에 선언된 <br>
 > `NUM_OF_VERTICES_OF_` 상수를 활용해서, 상수 중 가장 큰 값을 `InputView::checkAccuracyOfPoints` 에서 가지는 방법을 고민하고자 한다. <br>
 > 또한 `FigureFactory`의 `NUM_OF_VERTICES_OF_` 상수 또한 각 도형 클래스에서 가져와서 선언하는 것을 변경하고자 한다.
+
+3. Line 클래스 구현
+> `NUM_OF_VERTICES` 상수를 구현하는 부분에서 문제가 생겼다. 
+```java
+package step05.model;
+
+import java.util.List;
+
+public class Line extends Figure {
+	private static final int NUM_OF_VERTICES = 2;
+	private static final String OUTPUT_AREA_MESSAGE = "두 점 사이의 거리는 "; //*1
+
+	Line(List<Point> points) {
+		super(points);
+	}
+
+	@Override
+	int getVertexNumber() {
+		return NUM_OF_VERTICES;
+	}
+	
+	// 생략...
+}
+```
+> `getVertexNumber()` 메서드를 어떻게 선언하는게 좋을까? FigureFactory에서 사용하기 위해서는 static으로 선언해야 한다.<br>
+> 하지만 추상 메서드는 static으로 선언할 수 없다. (부모 클래스가 초기화 되지 않은 상태에서 부모 클래스의 추상 메서드를 가져올 수 없기 때문)<br>
+> 물론 `NUM_OF_VERTICES` 상수를 public static 으로 선언하는 것으로도 해결 할 수 있었지만, 나는 `NUM_OF_VERTICES` 상수를 강제하고 싶었다.<br>
+> 즉, `Figure`를 상속하는 새로운 클래스가 구현될 때, 반드시 `NUM_OF_VERTICES` 상수를 함께 선언해야 하는데 이것을 강제하는 방법이 없었다.
+>
+> 고민을 하며 이것저것 찾아보다가 `Enum`을 활용하기로 했다. <br>
+> 문자열 계산기를 피드백 강의를 볼 때, `Enum`을 활용해서 연산자를 지정하고, 계산까지 하는 방식을 엿보았다. <br>
+> 내 아이디어는 다음과 같다. 본래 `getVertexNumber()`의 목적은 하위 클래스로 하여금 `VertexNumber`를 가지게 만들기 위함이었다 <br>
+> 그러나 팩토리 메소드에서 사용하기 위해선 static으로 선언해야 한다는게 내가 겪고 있는 문제점이다. <br>
+> 그렇다면 `getVertexNumber()` 대신에 `abstract FigureType getFigureType();` 을 구현하도록 만들면 어떨까?
+
+<details>
+<summary>아래의 코드가 된다.</summary>
+
+```java
+package step05.model;
+
+public enum FigureType {
+LINE(2)
+;
+
+private final int vertices;
+FigureType(int vertices) {
+this.vertices = vertices;
+}
+
+public int getVertices() {
+return vertices;
+}
+}
+```
+> `Enum`을 통해 `vertices` 값을 설정해 줄 수 있다. 이렇게 되면
+```java
+public class FigureFactory {
+
+	//...생략
+	private static final Map<Integer, Function<List<Point>, Figure>> classifier = new HashMap<>(); // *1
+
+	static {
+		classifier.put(FigureType.LINE.getVertices(), Line::new);
+	}
+	//...생략
+}
+```
+> 팩토리 메서드는 이렇게 된다. 팩토리 클래스에서 직접 상수를 넣는 것보다는 나아보인다.
+```java
+public class Line extends Figure {
+
+  //...생략
+	@Override
+	FigureType getFigureType() {
+		return FigureType.LINE;
+	}
+
+  //...생략
+}
+```
+> 또한 `Figure`를 상속하는 하위 클래스에서는 `getFigureType()`를 반드시 구현하도록 만들어 신규 클래스가 생겼을 때 FigureType 내에 함께 선언해줘야 함을 암시할 수 있다. <br>
+> 물론 단순한 아이디어일 뿐 그렇게 나아졌다고 볼 수는 없다. 결과적으로 `getFigureType()` 메서드의 활용도가 떨어진다면 메모리 낭비일 수도 있으니 말이다. <br>
+</details>

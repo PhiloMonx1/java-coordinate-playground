@@ -3,6 +3,7 @@ package step05.model;
 import java.util.List;
 
 public abstract class Figure {
+
 	private static final String ERROR_POINTS_NULL = "좌표는 빈 값일 수 없습니다.";
 	private final List<Point> points;
 
@@ -17,7 +18,7 @@ public abstract class Figure {
 		return points;
 	}
 
-	abstract int getVertexNumber();
+	abstract FigureType getFigureType();
 
 	abstract double area();
 
