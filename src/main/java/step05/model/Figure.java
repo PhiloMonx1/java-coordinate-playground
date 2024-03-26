@@ -1,6 +1,7 @@
 package step05.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Figure {
 
@@ -27,5 +28,22 @@ public abstract class Figure {
 	public boolean hasPoint(int x, int y) {
 		return getPoints().stream()
 				.anyMatch(point -> point.isSame(x, y));
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Figure figure = (Figure) o;
+		return Objects.equals(points, figure.points);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(points);
 	}
 }

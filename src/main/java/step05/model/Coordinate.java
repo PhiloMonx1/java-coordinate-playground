@@ -1,5 +1,7 @@
 package step05.model;
 
+import java.util.Objects;
+
 public class Coordinate {
 
 	public static final int LOWER_LIMIT = 1;
@@ -22,5 +24,22 @@ public class Coordinate {
 
 	int getPosition() {
 		return position;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Coordinate that = (Coordinate) o;
+		return position == that.position;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(position);
 	}
 }

@@ -25,7 +25,7 @@ public class InputView {
 		return inputCoordinates(scanner.nextLine());
 	}
 
-	private static List<int[]> inputCoordinates(String input) {
+	static List<int[]> inputCoordinates(String input) {
 		try {
 			input = input.replace(" ", "");
 			checkAccuracyOfCoordinates(input);
