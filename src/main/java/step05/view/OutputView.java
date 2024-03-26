@@ -2,8 +2,9 @@ package step05.view;
 
 import step05.model.Coordinate;
 import step05.model.Figure;
+import step05.utils.Util;
 
-public class OutputView {
+public class OutputView extends Util {
 
 	private static final String FOUR_BLANK = "    ";
 	private static final String VERTICAL_AXIS = "|";
@@ -12,7 +13,7 @@ public class OutputView {
 	private static final String MARK_OF_POINT = "●";
 
 	private OutputView() {
-		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+		super();
 	}
 
 	public static void showCoordinate(Figure figure) {

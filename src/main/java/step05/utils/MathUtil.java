@@ -1,9 +1,9 @@
 package step05.utils;
 
-public class MathUtil {
+public class MathUtil extends Util {
 
 	private MathUtil() {
-		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+		super();
 	}
 
 	public static double squareDifference(int firstValue, int secondValue) {

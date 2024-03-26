@@ -7,8 +7,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import step05.model.FigureType;
+import step05.utils.Util;
 
-public class InputView {
+public class InputView extends Util {
 
 	private static final String INPUT_COORDINATE = "좌표를 입력하세요.";
 	private static final String ERROR_INVALID_COORDINATES = "올바르지 않은 입력값입니다.";
@@ -17,7 +18,7 @@ public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
 
 	private InputView() {
-		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+		super();
 	}
 
 	public static List<int[]> inputCoordinates() {

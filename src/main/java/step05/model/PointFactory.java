@@ -2,10 +2,11 @@ package step05.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import step05.utils.Util;
 
-public class PointFactory {
+public class PointFactory extends Util {
 	private PointFactory(){
-		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+		super();
 	}
 
 	public static List<Point> create(List<int[]> coordinates) {
