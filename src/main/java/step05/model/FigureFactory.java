@@ -16,6 +16,9 @@ public class FigureFactory {
 		classifier.put(FigureType.RECTANGLE.getVertices(), Rectangle::new);
 	}
 
+	private FigureFactory() {
+		throw new IllegalStateException(this.getClass().getSimpleName() + "는 유틸리티 클래스입니다.");
+	}
 
 	public static Figure create(List<Point> points) {
 		if (points == null) {
@@ -35,8 +38,10 @@ public class FigureFactory {
 	private static Figure classifyFigure(List<Point> points) {
 		try {
 			return classifier.get(points.size()).apply(points);
-		} catch (Exception e) {
-			throw new IllegalArgumentException(ERROR_NOT_APPLY_CLASSIFIER);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		} catch (NullPointerException e){
+			throw new NullPointerException(ERROR_NOT_APPLY_CLASSIFIER);
 		}
 	}
 }
