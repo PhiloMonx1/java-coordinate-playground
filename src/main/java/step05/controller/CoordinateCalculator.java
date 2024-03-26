@@ -16,7 +16,7 @@ public class CoordinateCalculator {
 			List<Point> points = PointFactory.create(coordinates);
 			Figure figure = FigureFactory.create(points);
 			OutputView.showCoordinate(figure);
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			run();
 		}
